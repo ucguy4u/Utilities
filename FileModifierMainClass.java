@@ -1,4 +1,4 @@
-package com.ucguy4u.util;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,9 +16,10 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
- * This class will find the specified file in the workspace recursively and store the location. This file path is passed
- * to the line appender method. Line appender will write the specified data at the beginning of the file. Operation is
- * done on same file no duplicate file is created.
+ * This class will find the specified file in the workspace recursively and
+ * store the location. This file path is passed to the line appender method.
+ * Line appender will write the specified data at the beginning of the file.
+ * Operation is done on same file no duplicate file is created.
  * 
  * @author chauhanuday
  */
@@ -27,16 +28,18 @@ public class FileModifierMainClass {
 	private static List<Path> result = new ArrayList<>();
 	private static String pathToWorkspace = "";
 	private static String filename = "";
-	public static final String DIRLOCATION = System.getProperty("user.dir") + File.separator + "configurations.properties";
+	public static final String DIRLOCATION = System.getProperty("user.dir") + File.separator
+			+ "configurations.properties";
 	static String data = "";
+
 	public static void main(String[] args) throws IOException {
 
 		Properties dbDetails = loadProperties(DIRLOCATION);
 		pathToWorkspace = dbDetails.getProperty("workspaceLocation");
 		filename = dbDetails.getProperty("filename");
 		data = dbDetails.getProperty("data");
-		//pathToWorkspace = args[0];
-		//filename = args[1];
+		// pathToWorkspace = args[0];
+		// filename = args[1];
 
 		FileModifierMainClass fileSearch = new FileModifierMainClass();
 		fileSearch.listf(pathToWorkspace);
@@ -60,35 +63,36 @@ public class FileModifierMainClass {
 	 */
 	private static void writetofile(FileModifierMainClass fileSearch) throws IOException {
 
-		//String data = "set sqlblanklines on;\r\n" + "SET DEFINE OFF;\r\n" + "set sqlprefix `; \n";
+		// String data = "set sqlblanklines on;\r\n" + "SET DEFINE OFF;\r\n" + "set
+		// sqlprefix `; \n";
 		try {
 			for (Path element : fileSearch.result) {
 				InputStream in = new FileInputStream(new File(element.toString()));
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			StringBuilder out = new StringBuilder();
-			out.append(data);
-			String line;
-			while ((line = reader.readLine()) != null) {
-				out.append(line + "\n");
-			}
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				StringBuilder out = new StringBuilder();
+				out.append(data);
+				String line;
+				while ((line = reader.readLine()) != null) {
+					out.append(line + "\n");
+				}
 
-			OutputStream os = null;
-			try {
-					os = new FileOutputStream(new File(element.toString()));
-				os.write(out.toString().getBytes(), 0, out.length());
-			} catch (IOException e) {
-				e.printStackTrace();
-				} finally {
+				OutputStream os = null;
 				try {
-					os.close();
+					os = new FileOutputStream(new File(element.toString()));
+					os.write(out.toString().getBytes(), 0, out.length());
 				} catch (IOException e) {
 					e.printStackTrace();
+				} finally {
+					try {
+						os.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
-			}
-	} catch (IOException e) {
+		} catch (IOException e) {
 
-		e.printStackTrace();
+			e.printStackTrace();
 
 		}
 	}
@@ -101,9 +105,9 @@ public class FileModifierMainClass {
 	 */
 	public void listf(String directoryName) throws IOException {
 
-		result = Files.find(Paths.get(directoryName), Integer.MAX_VALUE, (filePath, fileAttr) -> fileAttr.isRegularFile())
-		              .filter(PathtoFile -> PathtoFile.getFileName().endsWith(filename))
-		     .collect(Collectors.toList());
+		result = Files
+				.find(Paths.get(directoryName), Integer.MAX_VALUE, (filePath, fileAttr) -> fileAttr.isRegularFile())
+				.filter(PathtoFile -> PathtoFile.getFileName().endsWith(filename)).collect(Collectors.toList());
 	}
 
 	public List<Path> getResult() {
@@ -121,5 +125,5 @@ public class FileModifierMainClass {
 		}
 		return properties;
 	}
-	
+
 }

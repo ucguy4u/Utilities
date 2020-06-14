@@ -1,4 +1,4 @@
-package com.ucgguy4u.filehandler;
+package com.ucguy4u.filehandler;
 
 import java.io.BufferedReader;
 import java.io.File;

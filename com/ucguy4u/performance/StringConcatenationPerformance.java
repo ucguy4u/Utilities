@@ -1,6 +1,8 @@
-package com.ucgguy4u.performance;
+package com.ucguy4u.performance;
+
 /**
- * This class is can be use to test the performance of the java methods
+ * This class is can be use to test the performance of the java StringBuilder
+ * and StringBuffer
  * 
  * @author ucguy4u
  *

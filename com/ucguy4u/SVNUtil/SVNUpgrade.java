@@ -1,5 +1,4 @@
-package com.ucgguy4u.SVNUtil;
-
+package com.ucguy4u.SVNUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,8 +9,9 @@ import java.util.List;
 
 /**
  * This class will generate the OS specific script which we can use for
- * Update/Revert&Update/Update&PostponedConflicts/SVNStatus the Subversion SVN workspace user can append many more
- * options. Generated files can schedule according to needs.
+ * Update/Revert&Update/Update&PostponedConflicts/SVNStatus the Subversion SVN
+ * workspace user can append many more options. Generated files can schedule
+ * according to needs.
  * 
  * @author ucguy4u
  */
@@ -51,7 +51,8 @@ public class SVNUpgrade {
 	}
 
 	/**
-	 * These methiod is used to write the scripts You can add many more options to generate scripts
+	 * These methiod is used to write the scripts You can add many more options to
+	 * generate scripts
 	 * 
 	 * @param fileSearch
 	 * @throws IOException
@@ -95,7 +96,8 @@ public class SVNUpgrade {
 	}
 
 	/**
-	 * Pass the root directory name to method and it will return the .svn folder list
+	 * Pass the root directory name to method and it will return the .svn folder
+	 * list
 	 * 
 	 * @param directoryName
 	 */

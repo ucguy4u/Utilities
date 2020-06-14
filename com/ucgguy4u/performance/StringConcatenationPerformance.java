@@ -1,4 +1,6 @@
+package com.ucgguy4u.performance;
 /**
+ * This class is can be use to test the performance of the java methods
  * 
  * @author ucguy4u
  *
